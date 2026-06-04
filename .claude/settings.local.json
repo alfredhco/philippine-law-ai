@@ -21,7 +21,11 @@
       "PowerShell(gh auth *)",
       "Bash(git remote *)",
       "Bash(git push *)",
-      "PowerShell(Start-Process \"http://localhost:5173\")"
+      "PowerShell(Start-Process \"http://localhost:5173\")",
+      "Bash(vercel *)",
+      "Bash(git commit -m 'Add vercel.json for SPA routing *)",
+      "Bash(supabase *)",
+      "PowerShell(supabase *)"
     ]
   }
 }

@@ -405,7 +405,7 @@ export default function AICoach() {
             </div>
 
             {/* Quick action cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div className="grid grid-cols-3 gap-2">
               {QUICK_ACTIONS.filter(a => a.id !== 'ask').map(action => (
                 <button
                   key={action.id}

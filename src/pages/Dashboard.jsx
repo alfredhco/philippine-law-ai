@@ -24,10 +24,20 @@ import Modal              from '../components/ui/Modal'
 import { Tabs }           from '../components/ui/Tabs'
 import { useToast }       from '../context/ToastContext'
 
-import { SUBJECTS, OVERALL_PROGRESS } from '../data/subjects'
-import { BAR_QUESTIONS } from '../data/barQuestions'
+import { SUBJECTS } from '../data/subjects'
+import { ALL_MCQ, ALL_ESSAYS } from '../data/bar/index.js'
 import { getProgressSnapshot } from '../lib/progress.js'
 import { getProgressionSnapshot } from '../lib/progression.js'
+import { getMonthlyMinutes } from '../lib/activity.js'
+
+function getGreeting() {
+  const h = new Date().getHours()
+  if (h < 5)  return 'Good night'
+  if (h < 12) return 'Good morning'
+  if (h < 17) return 'Good afternoon'
+  if (h < 21) return 'Good evening'
+  return 'Good night'
+}
 
 const QUICK_ACTIONS = [
   { label: 'Flashcards',     icon: CreditCard, path: '/flashcards',     color: '#6366f1', bg: '#6366f115', desc: 'Spaced repetition' },
@@ -55,7 +65,9 @@ export default function Dashboard() {
   const liveReadiness = snap.readiness
   const masteredCards = snap.masteredCards
   const totalCards    = snap.totalCards
-  const displayPct    = liveReadiness || OVERALL_PROGRESS
+  const displayPct    = liveReadiness
+  const studyHours    = Math.round(getMonthlyMinutes() / 60)
+  const totalBarQs    = ALL_MCQ.length + ALL_ESSAYS.length
 
   const handleQuickAction = (path) => {
     toast.success('Opening module', 'Loading your study session...')
@@ -93,15 +105,12 @@ export default function Dashboard() {
               <span className="text-xs font-bold text-gold-400 uppercase tracking-widest">Bar Examination Prep</span>
             </div>
             <h2 className="font-serif text-2xl md:text-3xl font-bold text-white mb-1.5 leading-tight">
-              Good evening, Counselor
+              {getGreeting()}, Counselor
             </h2>
             <p className="text-gray-400 text-sm leading-relaxed max-w-lg">
-              You're <span className="text-gold-400 font-bold">{displayPct}% bar-ready</span> — {' '}
-              {displayPct < 50
-                ? 'Early stages. Build your foundation subject by subject.'
-                : displayPct < 75
-                ? 'Good momentum. Focus on weak subjects to close the gaps.'
-                : 'Excellent! You\'re approaching passing territory. Keep the pace.'
+              {displayPct === 0
+                ? <>Start studying to track your bar readiness. <span className="text-gold-400 font-semibold">Review flashcards</span> to begin.</>
+                : <>You're <span className="text-gold-400 font-bold">{displayPct}% bar-ready</span> — {displayPct < 50 ? 'Early stages. Build your foundation subject by subject.' : displayPct < 75 ? 'Good momentum. Focus on weak subjects to close the gaps.' : 'Excellent! You\'re approaching passing territory. Keep the pace.'}</>
               }
             </p>
           </div>
@@ -120,14 +129,16 @@ export default function Dashboard() {
         <div className="relative mt-5">
           <div className="flex items-center justify-between text-xs mb-1.5">
             <span className="text-gray-500">Bar Readiness</span>
-            <span className="font-bold text-gold-400">{displayPct}% · {100 - displayPct}% to go</span>
+            <span className="font-bold text-gold-400">
+              {displayPct > 0 ? `${displayPct}% · ${100 - displayPct}% to go` : 'Start studying to measure readiness'}
+            </span>
           </div>
           <div className="h-2 bg-navy-900/80 rounded-full overflow-hidden">
             <motion.div
               className="h-full rounded-full relative overflow-hidden"
               style={{ background: 'linear-gradient(90deg, #f59e0b, #f97316)' }}
               initial={{ width: 0 }}
-              animate={{ width: `${OVERALL_PROGRESS}%` }}
+              animate={{ width: `${displayPct}%` }}
               transition={{ duration: 1.4, ease: 'easeOut', delay: 0.4 }}
             >
               <div className="absolute inset-0 bg-shimmer opacity-30" />
@@ -153,10 +164,10 @@ export default function Dashboard() {
         <div className="space-y-5">
           {/* Stats row */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-            <StatsCard index={0} title="Bar Readiness"  value={`${OVERALL_PROGRESS}%`} subtitle="Overall mastery" icon={TrendingUp} color="#f59e0b" trend={4}  onClick={() => navigate('/analytics')} />
-            <StatsCard index={1} title="Cards Mastered" value={masteredCards}           subtitle={`of ${totalCards} total`}          icon={CreditCard}  color="#6366f1" trend={8}  onClick={() => navigate('/flashcards')} />
-            <StatsCard index={2} title="Bar Questions"  value={BAR_QUESTIONS.length}   subtitle="Practice Q&As"                    icon={Award}       color="#ef4444"            onClick={() => navigate('/bar-review')} />
-            <StatsCard index={3} title="Study Hours"    value="47h"                    subtitle="This month"                       icon={Clock}       color="#10b981" trend={12} onClick={() => navigate('/analytics')} />
+            <StatsCard index={0} title="Bar Readiness"  value={displayPct > 0 ? `${displayPct}%` : '—'} subtitle="Overall mastery" icon={TrendingUp} color="#f59e0b" trend={displayPct > 0 ? 4 : undefined} onClick={() => navigate('/analytics')} />
+            <StatsCard index={1} title="Cards Mastered" value={masteredCards}                            subtitle={`of ${totalCards} total`} icon={CreditCard} color="#6366f1" trend={masteredCards > 0 ? 8 : undefined} onClick={() => navigate('/flashcards')} />
+            <StatsCard index={2} title="Bar Questions"  value={totalBarQs}                               subtitle="Practice Q&As"           icon={Award}      color="#ef4444" onClick={() => navigate('/bar-review')} />
+            <StatsCard index={3} title="Study Hours"    value={studyHours > 0 ? `${studyHours}h` : '—'} subtitle="This month"              icon={Clock}      color="#10b981" trend={studyHours > 0 ? 12 : undefined} onClick={() => navigate('/analytics')} />
           </div>
 
           {/* Quick actions */}
@@ -296,7 +307,7 @@ export default function Dashboard() {
           <div className="bg-gold-500/5 border border-gold-500/15 rounded-xl p-4">
             <p className="text-xs text-gold-400 font-semibold mb-1.5 uppercase tracking-wider">AI Analysis</p>
             <p className="text-sm text-gray-300 leading-relaxed">
-              Based on your current progress ({OVERALL_PROGRESS}% overall), your study pattern shows
+              Based on your current progress ({displayPct > 0 ? displayPct : 0}% overall), your study pattern shows
               strength in Legal Ethics (65%) and Criminal Law (58%), while Taxation Law (18%) and
               Commercial Law (22%) require urgent attention.
             </p>

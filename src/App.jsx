@@ -21,10 +21,15 @@ const Login          = lazy(() => import('./pages/Login'))
 
 function PageLoader() {
   return (
-    <div className="flex items-center justify-center h-64">
-      <div className="flex items-center gap-3">
-        <div className="w-5 h-5 rounded-full border-2 border-gold-500 border-t-transparent animate-spin" />
-        <span className="text-sm text-gray-500">Loading...</span>
+    <div className="p-4 md:p-6 max-w-7xl mx-auto space-y-4 animate-pulse">
+      <div className="h-8 w-48 bg-navy-800 rounded-xl" />
+      <div className="h-40 bg-navy-800 rounded-2xl" />
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        {[...Array(4)].map((_, i) => <div key={i} className="h-28 bg-navy-800 rounded-2xl" />)}
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="h-48 bg-navy-800 rounded-2xl lg:col-span-2" />
+        <div className="h-48 bg-navy-800 rounded-2xl" />
       </div>
     </div>
   )

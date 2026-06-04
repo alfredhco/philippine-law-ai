@@ -812,6 +812,23 @@ function Lobby({ onStart, onHistory, historyCount }) {
       {!canStart && (
         <p className="text-center text-xs text-gray-600">Choose a professor to begin</p>
       )}
+
+      {/* How it works */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+        {[
+          { icon: '🎤', title: 'Face the Professor', desc: 'A professor grills you with real bar exam questions. No notes. No hints.' },
+          { icon: '⏱️', title: '90-Second Clock',    desc: 'You have 90 seconds to answer each question. The clock adds pressure.' },
+          { icon: '📊', title: 'Instant Feedback',   desc: 'Keywords, score, and professor commentary after every answer.' },
+        ].map(item => (
+          <div key={item.title} className="flex gap-3 p-4 rounded-2xl bg-navy-800/40 border border-navy-700/50">
+            <span className="text-xl shrink-0">{item.icon}</span>
+            <div>
+              <p className="text-xs font-semibold text-white mb-1">{item.title}</p>
+              <p className="text-[11px] text-gray-500 leading-relaxed">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
 import Sidebar from './Sidebar'
 import TopBar from './TopBar'
 
 const PAGE_TITLES = {
   '/':              'Dashboard',
+  '/subjects':      'Subject Library',
   '/codal':         'Codal Study',
   '/bar-review':    'Bar Review',
   '/flashcards':    'Flashcards',
@@ -12,16 +14,16 @@ const PAGE_TITLES = {
   '/issue-spotting':'Issue Spotting',
   '/irac':          'IRAC Trainer',
   '/analytics':     'Analytics',
-  '/settings':      'Settings',
   '/ai-coach':      'AI Coach',
-  '/subjects':      'Subject Library',
+  '/settings':      'Settings',
 }
 
 export default function AppShell() {
   const [collapsed, setCollapsed]     = useState(false)
   const [mobileOpen, setMobileOpen]   = useState(false)
   const location                       = useLocation()
-  const pageTitle = PAGE_TITLES[location.pathname] || 'Philippine Law AI'
+  const pageTitle = PAGE_TITLES[location.pathname]
+    ?? (location.pathname.startsWith('/subjects/') ? 'Subject Dashboard' : 'Philippine Law AI')
 
   return (
     <div className="flex h-screen bg-navy-950 overflow-hidden">
@@ -44,9 +46,18 @@ export default function AppShell() {
           onMenuToggle={() => setMobileOpen(o => !o)}
         />
         <main className="flex-1 overflow-y-auto">
-          <div className="p-4 md:p-6 max-w-7xl mx-auto">
-            <Outlet />
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={location.pathname}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+              className="p-4 md:p-6 max-w-7xl mx-auto"
+            >
+              <Outlet />
+            </motion.div>
+          </AnimatePresence>
         </main>
       </div>
     </div>

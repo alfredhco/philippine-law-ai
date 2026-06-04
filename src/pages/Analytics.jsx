@@ -321,10 +321,10 @@ export default function Analytics() {
           {/* Key metrics row */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
             {[
-              { label: 'Bar Readiness',  value: `${readiness}%`,            icon: TrendingUp, color: '#f59e0b' },
-              { label: 'Cards Mastered', value: masteredCards,               icon: Award,      color: '#10b981' },
-              { label: 'Total XP',       value: xp.toLocaleString(),         icon: BarChart2,  color: '#6366f1' },
-              { label: 'Achievements',   value: `${unlockedCount}/${totalAchievements}`, icon: CheckCircle, color: '#f97316' },
+              { label: 'Bar Readiness',  value: readiness > 0 ? `${readiness}%` : '—',  icon: TrendingUp, color: '#f59e0b' },
+              { label: 'Cards Mastered', value: masteredCards,                             icon: Award,      color: '#10b981' },
+              { label: 'Total XP',       value: xp.toLocaleString(),                      icon: BarChart2,  color: '#6366f1' },
+              { label: 'Achievements',   value: `${unlockedCount}/${totalAchievements}`,  icon: CheckCircle, color: '#f97316' },
             ].map((m, i) => (
               <motion.div key={m.label} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}
                 className="glass-card p-4">
