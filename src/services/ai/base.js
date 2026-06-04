@@ -7,8 +7,12 @@ export const MAX_TOK = 1500
 export const HISTORY_LIMIT = 12  // messages kept in context window
 
 // ─── Env detection ────────────────────────────────────────────────────────────
-export const hasApiKey = () => !!import.meta.env.VITE_ANTHROPIC_API_KEY
+// In production, calls go through /api/claude (key stays server-side).
+// In local dev with VITE_ANTHROPIC_API_KEY set, call Anthropic directly.
+const IS_DEV = import.meta.env.DEV
+export const hasApiKey = () => !IS_DEV || !!import.meta.env.VITE_ANTHROPIC_API_KEY
 export const getApiKey = () => import.meta.env.VITE_ANTHROPIC_API_KEY ?? ''
+const API_URL = IS_DEV ? 'https://api.anthropic.com/v1/messages' : '/api/claude'
 
 // ─── Base system prompt ───────────────────────────────────────────────────────
 export const BASE_SYSTEM = `Ikaw si Bar Coach — isang expert Philippine bar examination AI assistant na nagsasalita ng Taglish (Filipino-English mix). Ang iyong purpose ay tulungan ang mga bar candidates na mag-aral ng Philippine law nang mas epektibo.
@@ -64,13 +68,12 @@ export async function streamClaude({ system, messages, onChunk, onDone, onError 
   if (!key) return false  // caller handles fallback
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const headers = { 'Content-Type': 'application/json' }
+    if (IS_DEV && key) { headers['x-api-key'] = key; headers['anthropic-version'] = '2023-06-01' }
+
+    const res = await fetch(API_URL, {
       method: 'POST',
-      headers: {
-        'Content-Type':      'application/json',
-        'x-api-key':         key,
-        'anthropic-version': '2023-06-01',
-      },
+      headers,
       body: JSON.stringify({ model: MODEL, max_tokens: MAX_TOK, stream: true, system, messages }),
     })
 
@@ -108,12 +111,15 @@ export async function streamClaude({ system, messages, onChunk, onDone, onError 
 // ─── Real API: single request (non-streaming) ─────────────────────────────────
 export async function callClaude({ system, messages }) {
   const key = getApiKey()
-  if (!key) return null
+  if (IS_DEV && !key) return null
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const headers = { 'Content-Type': 'application/json' }
+    if (IS_DEV && key) { headers['x-api-key'] = key; headers['anthropic-version'] = '2023-06-01' }
+
+    const res = await fetch(API_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01' },
+      headers,
       body: JSON.stringify({ model: MODEL, max_tokens: MAX_TOK, system, messages }),
     })
     if (!res.ok) return null
