@@ -57,6 +57,20 @@ export function getWeeklyActivity() {
   return days
 }
 
+// Returns 15 weeks of heatmap data (real activity log)
+export function getHeatmapData(weeks = 15) {
+  const log = readLog()
+  const days = weeks * 7
+  const result = []
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(Date.now() - i * 86400000)
+    const iso = d.toISOString().split('T')[0]
+    const entry = log[iso] || {}
+    result.push({ date: d, dateStr: d.toDateString(), iso, minutes: entry.minutes || 0 })
+  }
+  return result
+}
+
 // Returns total study minutes this month
 export function getMonthlyMinutes() {
   const log = readLog()

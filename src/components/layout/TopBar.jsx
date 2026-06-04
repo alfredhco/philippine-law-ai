@@ -3,11 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Search, Bell, Play, Pause, Square, Menu, X, Command } from 'lucide-react'
 import { useStudySession } from '../../hooks/useStudySession'
 import { useToast } from '../../context/ToastContext'
+import { getProgressionSnapshot } from '../../lib/progression.js'
+import XPBar from '../progression/XPBar'
 
 export default function TopBar({ pageTitle, onMenuToggle }) {
   const { isActive, formatElapsed, startSession, pauseSession, endSession } = useStudySession()
   const [searchOpen, setSearchOpen] = useState(false)
   const toast = useToast()
+  const { levelInfo, xp } = getProgressionSnapshot()
 
   const handleEndSession = () => {
     endSession()
@@ -106,6 +109,11 @@ export default function TopBar({ pageTitle, onMenuToggle }) {
               <Square size={12} />
             </button>
           </div>
+        </div>
+
+        {/* Level chip */}
+        <div className="hidden sm:flex items-center gap-2 px-2.5 py-1.5 bg-navy-800/60 border border-navy-700/60 rounded-xl min-w-[120px]">
+          <XPBar levelInfo={levelInfo} xp={xp} compact />
         </div>
 
         {/* Notifications */}

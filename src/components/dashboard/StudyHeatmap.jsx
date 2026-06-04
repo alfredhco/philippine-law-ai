@@ -1,28 +1,10 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Activity } from 'lucide-react'
+import { getHeatmapData } from '../../lib/activity.js'
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 const DAYS   = ['M','','W','','F','','S']
-
-function generateHeatmapData() {
-  const today = new Date()
-  const data = []
-  for (let i = 104; i >= 0; i--) {
-    const d = new Date(today)
-    d.setDate(today.getDate() - i)
-    const rand = Math.random()
-    const minutes = rand < 0.15 ? 0 :
-                    rand < 0.35 ? Math.floor(Math.random() * 30) + 5 :
-                    rand < 0.60 ? Math.floor(Math.random() * 60) + 30 :
-                    rand < 0.82 ? Math.floor(Math.random() * 60) + 60 :
-                                  Math.floor(Math.random() * 60) + 120
-    data.push({ date: d, minutes, dateStr: d.toDateString() })
-  }
-  return data
-}
-
-const DATA = generateHeatmapData()
 
 function getColor(minutes) {
   if (minutes === 0)   return 'bg-navy-800 border-navy-700'
@@ -34,15 +16,16 @@ function getColor(minutes) {
 
 export default function StudyHeatmap() {
   const [tooltip, setTooltip] = useState(null)
+  const data = getHeatmapData(15)
   const weeks = []
-  for (let i = 0; i < DATA.length; i += 7) weeks.push(DATA.slice(i, i + 7))
+  for (let i = 0; i < data.length; i += 7) weeks.push(data.slice(i, i + 7))
 
-  const totalMinutes = DATA.reduce((s, d) => s + d.minutes, 0)
-  const activeDays   = DATA.filter(d => d.minutes > 0).length
+  const totalMinutes = data.reduce((s, d) => s + d.minutes, 0)
+  const activeDays   = data.filter(d => d.minutes > 0).length
   const currentStreak = (() => {
     let streak = 0
-    for (let i = DATA.length - 1; i >= 0; i--) {
-      if (DATA[i].minutes > 0) streak++
+    for (let i = data.length - 1; i >= 0; i--) {
+      if (data[i].minutes > 0) streak++
       else break
     }
     return streak
@@ -72,23 +55,17 @@ export default function StudyHeatmap() {
       </div>
 
       <div className="flex gap-2">
-        {/* Day labels */}
         <div className="flex flex-col gap-[3px] pt-5">
           {DAYS.map((d, i) => (
             <div key={i} className="h-[14px] text-[9px] text-gray-600 flex items-center w-3">{d}</div>
           ))}
         </div>
-
-        {/* Grid */}
         <div className="flex-1 overflow-x-auto">
           <div className="flex gap-[3px] min-w-max">
             {weeks.map((week, wi) => (
               <div key={wi} className="flex flex-col gap-[3px]">
-                {/* Month label above first week of month */}
                 <div className="h-4 text-[9px] text-gray-600 flex items-center">
-                  {week[0] && week[0].date.getDate() <= 7
-                    ? MONTHS[week[0].date.getMonth()]
-                    : ''}
+                  {week[0] && week[0].date.getDate() <= 7 ? MONTHS[week[0].date.getMonth()] : ''}
                 </div>
                 {week.map((day, di) => (
                   <motion.div
@@ -107,7 +84,6 @@ export default function StudyHeatmap() {
         </div>
       </div>
 
-      {/* Legend */}
       <div className="flex items-center justify-end gap-2 mt-3">
         <span className="text-[10px] text-gray-600">Less</span>
         {[0, 20, 45, 90, 140].map((m, i) => (
@@ -116,11 +92,10 @@ export default function StudyHeatmap() {
         <span className="text-[10px] text-gray-600">More</span>
       </div>
 
-      {/* Tooltip */}
       {tooltip && (
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 bg-navy-700 border border-navy-600 rounded-lg px-3 py-2 text-xs text-white pointer-events-none z-20 whitespace-nowrap shadow-navy">
           <p className="font-semibold">{tooltip.dateStr}</p>
-          <p className="text-gray-400">{tooltip.minutes > 0 ? `${tooltip.minutes} min studied` : 'No study'}</p>
+          <p className="text-gray-400">{tooltip.minutes > 0 ? `${tooltip.minutes} min studied` : 'No study logged'}</p>
         </div>
       )}
     </div>

@@ -7,6 +7,7 @@ import {
   ChevronRight, Sparkles,
 } from 'lucide-react'
 
+import XPBar              from '../components/progression/XPBar'
 import StatsCard          from '../components/dashboard/StatsCard'
 import SubjectProgress    from '../components/dashboard/SubjectProgress'
 import StudyStreak        from '../components/dashboard/StudyStreak'
@@ -26,6 +27,7 @@ import { useToast }       from '../context/ToastContext'
 import { SUBJECTS, OVERALL_PROGRESS } from '../data/subjects'
 import { BAR_QUESTIONS } from '../data/barQuestions'
 import { getProgressSnapshot } from '../lib/progress.js'
+import { getProgressionSnapshot } from '../lib/progression.js'
 
 const QUICK_ACTIONS = [
   { label: 'Flashcards',     icon: CreditCard, path: '/flashcards',     color: '#6366f1', bg: '#6366f115', desc: 'Spaced repetition' },
@@ -49,6 +51,7 @@ export default function Dashboard() {
   const [aiModal, setAiModal] = useState(false)
 
   const snap          = getProgressSnapshot()
+  const progSnap      = getProgressionSnapshot()
   const liveReadiness = snap.readiness
   const masteredCards = snap.masteredCards
   const totalCards    = snap.totalCards
@@ -135,6 +138,11 @@ export default function Dashboard() {
             <div className="w-px h-2 bg-white/40" />
             <span className="text-[9px] text-gray-500 mt-0.5 -translate-x-1/2">75% pass</span>
           </div>
+        </div>
+
+        {/* XP bar */}
+        <div className="relative mt-4 pt-4 border-t border-navy-700/50">
+          <XPBar levelInfo={progSnap.levelInfo} xp={progSnap.xp} />
         </div>
       </motion.div>
 
