@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Search, Bell, Play, Pause, Square, Menu, X, Command } from 'lucide-react'
 import { useStudySession } from '../../hooks/useStudySession'
 import { useToast } from '../../context/ToastContext'
+import { useAuth } from '../../context/AuthContext'
 import { getProgressionSnapshot } from '../../lib/progression.js'
 import XPBar from '../progression/XPBar'
 
@@ -10,7 +11,10 @@ export default function TopBar({ pageTitle, onMenuToggle }) {
   const { isActive, formatElapsed, startSession, pauseSession, endSession } = useStudySession()
   const [searchOpen, setSearchOpen] = useState(false)
   const toast = useToast()
+  const { user, profile, syncing, isEnabled } = useAuth()
   const { levelInfo, xp } = getProgressionSnapshot()
+
+  const avatarInitial = (profile?.display_name || user?.email || 'L')[0].toUpperCase()
 
   const handleEndSession = () => {
     endSession()
@@ -125,12 +129,18 @@ export default function TopBar({ pageTitle, onMenuToggle }) {
           <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-gold-500" />
         </button>
 
+        {/* Sync indicator */}
+        {isEnabled && syncing && (
+          <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" title="Syncing…" />
+        )}
+
         {/* Avatar */}
         <motion.div
           whileHover={{ scale: 1.05 }}
           className="w-8 h-8 rounded-xl bg-gradient-to-br from-gold-500 to-accent-orange flex items-center justify-center text-navy-950 font-bold text-sm cursor-pointer shadow-glow"
+          title={profile?.display_name || user?.email || 'Local mode'}
         >
-          L
+          {avatarInitial}
         </motion.div>
       </div>
     </header>

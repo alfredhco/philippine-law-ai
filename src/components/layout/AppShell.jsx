@@ -13,6 +13,8 @@ const PAGE_TITLES = {
   '/irac':          'IRAC Trainer',
   '/analytics':     'Analytics',
   '/settings':      'Settings',
+  '/ai-coach':      'AI Coach',
+  '/subjects':      'Subject Library',
 }
 
 export default function AppShell() {
