@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(Receive-Job *)",
+      "Bash(start *)",
+      "PowerShell(Start-Process powershell -ArgumentList \"-NoExit\", \"-Command\", \"cd 'C:\\\\Users\\\\user\\\\Desktop\\\\philippine-law-ai'; npm run dev\")",
+      "PowerShell(New-Item *)",
+      "Bash(npm run *)",
+      "Bash(npx vite *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
+      "Bash(curl *)",
+      "Bash(node *)",
+      "Bash(npx playwright *)",
+      "Bash(npm install *)",
+      "Bash(grep -Hm1 ^description: 'C:\\\\Users\\\\user\\\\Desktop\\\\philippine-law-ai/.claude/skills/*/SKILL.md')",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}

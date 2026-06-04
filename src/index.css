@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+  body {
+    @apply font-sans text-gray-100 antialiased;
+    background: #05080f;
+    min-height: 100vh;
+  }
+
+  /* Premium scrollbar */
+  ::-webkit-scrollbar       { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #080d1a; }
+  ::-webkit-scrollbar-thumb { background: #22385e; border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: #d97706; }
+
+  ::selection { background: #f59e0b; color: #05080f; }
+}
+
+@layer components {
+  /* Glass card — base style used directly in components */
+  .glass-card {
+    @apply bg-navy-800/60 backdrop-blur-md border border-navy-600/60 rounded-2xl;
+  }
+
+  /* Nav item */
+  .nav-item         { @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-500 hover:text-gray-200 hover:bg-navy-700/60 transition-all duration-200 text-sm font-medium cursor-pointer; }
+  .nav-item-active  { @apply nav-item text-gold-400 bg-gold-500/10; }
+
+  /* Typography */
+  .page-title       { @apply font-serif text-2xl font-bold text-white; }
+  .section-title    { @apply font-serif text-base font-bold text-white; }
+  .label-text       { @apply text-[10px] font-bold text-gray-600 uppercase tracking-[0.12em]; }
+}
+
+@layer utilities {
+  /* Gradient text */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Shimmer animation for skeleton + progress bars */
+  .bg-shimmer {
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s infinite;
+  }
+
+  /* Glow shadow helpers not in Tailwind config */
+  .shadow-glow    { box-shadow: 0 0 20px rgba(249,115,22,0.25), 0 0 40px rgba(245,158,11,0.1); }
+  .shadow-gold    { box-shadow: 0 0 25px rgba(245,158,11,0.18); }
+  .shadow-navy    { box-shadow: 0 4px 24px rgba(0,0,0,0.5); }
+  .shadow-navy-lg { box-shadow: 0 8px 48px rgba(0,0,0,0.7); }
+}
+
+/* Keyframes */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* Framer Motion layout transition helpers */
+[data-framer-component-type] { will-change: transform, opacity; }

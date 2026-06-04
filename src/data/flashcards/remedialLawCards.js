@@ -1,0 +1,58 @@
+export default [
+  {
+    id: 'rem-001', subject: 'remedial-law', topic: 'jurisdiction', difficulty: 'medium',
+    front: 'How is JURISDICTION determined? Who confers it?',
+    back: '**Jurisdiction** = authority of the court to hear and decide a case.\n\n**Conferred by LAW** — not by agreement of parties, not by consent, not by waiver.\n\n**Determined by:**\n1. **Allegations in the complaint** (not defenses)\n2. **Nature of the cause of action**\n3. **Relief sought**\n4. **Amount involved** (for MTC/RTC threshold)\n\n**Distinguish:**\n• **Subject matter jurisdiction** — power to hear the type of case\n• **Personal/in personam jurisdiction** — power over the parties\n• **Jurisdiction over the res** — power over the thing in controversy\n\n*Lack of jurisdiction over subject matter may be raised anytime, even on appeal. It is **never waived**.*\n\n*Jurisdiction over person of defendant: acquired by valid service of summons or voluntary appearance.*',
+    hint: 'Law confers jurisdiction — not parties. Allegations in complaint control.',
+    tags: ['jurisdiction', 'civil-procedure', 'Rules-of-Court'],
+  },
+  {
+    id: 'rem-002', subject: 'remedial-law', topic: 'evidence', difficulty: 'hard',
+    front: 'What is the BEST EVIDENCE RULE and its exceptions?',
+    back: '**Best evidence rule** (Sec. 3, Rule 130): When the subject of inquiry is the **contents of a document**, no evidence is admissible other than the **original** document itself.\n\n**Exceptions — secondary evidence admissible when:**\n1. Original is **lost/destroyed** without bad faith of proponent\n2. Original is in **adverse party\'s possession** who fails to produce it\n3. Original **cannot be obtained** by judicial process\n4. Original is a **public record** (certified copy admissible)\n5. Recording is a **collateral matter** not the primary issue\n\n**Degrees of secondary evidence:**\n1. Copy of original\n2. Recital in authentic document\n3. Testimony of witnesses\n\n*Note: "Original" includes all counterparts executed simultaneously with same typewriter (Sec. 4, Rule 130).*',
+    hint: 'Best = Original. Secondary only if original unavailable.',
+    tags: ['evidence', 'best-evidence-rule', 'Rule-130', 'Sec-3'],
+  },
+  {
+    id: 'rem-003', subject: 'remedial-law', topic: 'evidence', difficulty: 'hard',
+    front: 'What is the HEARSAY RULE and its most important exceptions?',
+    back: '**Hearsay** (Sec. 36, Rule 130): An out-of-court statement offered to prove the truth of its contents, made by someone not present for cross-examination.\n\n**Why excluded:** Denies opposing party right to cross-examine.\n\n**Key exceptions (admissible despite being hearsay):**\n1. **Dying declaration** — statement made at point of death re: cause/circumstances\n2. **Res gestae** — spontaneous statement made during or immediately after startling event\n3. **Business records** — regularly kept in ordinary course of business\n4. **Entries in official records** — made by public officer in performance of duty\n5. **Common reputation** — matters of family/public interest\n6. **Learned treatises** — scientific/professional works\n7. **Prior testimony** — made in earlier proceeding, party had opportunity to cross-examine\n8. **Admission by party** — not hearsay at all under revised Rules',
+    hint: 'Out-of-court statement to prove truth = hearsay. Eight key exceptions.',
+    tags: ['evidence', 'hearsay', 'Rule-130', 'Sec-36', 'exceptions'],
+  },
+  {
+    id: 'rem-004', subject: 'remedial-law', topic: 'civil-procedure', difficulty: 'medium',
+    front: 'What is the HIERARCHY OF COURTS rule in the Philippines?',
+    back: '**Principle:** Cases should be filed with the court of lowest applicable jurisdiction; direct recourse to higher courts is generally not allowed.\n\n**Court hierarchy (lowest to highest):**\n1. **MTC/MeTC/MCTC** — first-level courts\n2. **RTC** — second-level/trial courts; exclusive original jurisdiction for cases over ₱300K (outside MM) or ₱400K (MM)\n3. **CA** — intermediate appellate; original jurisdiction for mandamus, prohibition, certiorari against RTC\n4. **SC** — court of last resort; original jurisdiction for specific writs; appellate for CA decisions\n\n**When direct SC petition is allowed:**\n• Genuine constitutional question (not just legal question)\n• Transcendental importance / matters of national concern\n• Certiorari against lower courts (Art. VIII, Sec. 5[1])\n\n*Violation of hierarchy: SC may dismiss the petition outright.*',
+    hint: 'Start low, go up. SC is last resort — with exceptions.',
+    tags: ['civil-procedure', 'hierarchy-of-courts', 'jurisdiction', 'SC'],
+  },
+  {
+    id: 'rem-005', subject: 'remedial-law', topic: 'criminal-procedure', difficulty: 'medium',
+    front: 'When is a WARRANT OF ARREST required and when is warrantless arrest valid?',
+    back: '**General rule:** A warrant of arrest is required before arresting someone.\n\n**Requisites for valid warrant:** Probable cause **personally determined** by a judge after examination of complainant and witnesses.\n\n**Lawful warrantless arrests** (Rule 113, Sec. 5):\n1. **In flagrante delicto** — crime committed in the officer\'s presence\n   → Requirements: (a) crime committed/being committed; (b) person arrested was the offender\n2. **Hot pursuit** — crime was JUST committed; officer has **personal knowledge** of facts indicating person committed it\n   → "Just committed" = within a short time; no time to secure warrant\n3. **Escaped prisoner** — person is a prison escapee or a lawful arrest\n\n*Note: For hot pursuit, the officer must have **personal knowledge** — not based solely on information from others.*',
+    hint: 'In flagrante, hot pursuit, escaped prisoner — three valid warrantless arrests.',
+    tags: ['criminal-procedure', 'warrant-of-arrest', 'Rule-113', 'Sec-5'],
+  },
+  {
+    id: 'rem-006', subject: 'remedial-law', topic: 'evidence', difficulty: 'hard',
+    front: 'What are the REQUISITES OF A DYING DECLARATION?',
+    back: '**Dying declaration** (Sec. 37, Rule 130) — admissible as exception to hearsay:\n\n**Four requisites:**\n1. Death of the declarant is **imminent** — declarant must believe death is near ("consciousness of impending death")\n2. Declaration concerns the **cause and circumstances** of the death\n3. Declarant would be **competent to testify** if alive\n4. Declaration is offered in a case in which the **declarant\'s death is the subject of inquiry**\n\n**Need NOT die immediately** — the test is the *belief* of imminent death at the time of declaration.\n\n**If declarant survives:** The declaration may still be admitted as part of res gestae or as a prior inconsistent statement.\n\n*Distinguished from res gestae: Dying declaration requires consciousness of death; res gestae requires spontaneity immediately after startling event.*',
+    hint: 'Consciousness of impending death + about cause of death.',
+    tags: ['evidence', 'dying-declaration', 'Rule-130', 'Sec-37', 'hearsay-exception'],
+  },
+  {
+    id: 'rem-007', subject: 'remedial-law', topic: 'civil-procedure', difficulty: 'medium',
+    front: 'What is RES JUDICATA and what are its elements?',
+    back: '**Res judicata** (Rule 39, Sec. 47) = "a matter already judged."\n\nPrevents relitigation of a matter already decided by final judgment.\n\n**Elements:**\n1. **Final judgment** or order (final and executory)\n2. Rendered by court with **jurisdiction**\n3. Judgment on the **merits**\n4. **Identity** of parties, subject matter, and cause of action\n\n**Two concepts:**\n1. **Bar by prior judgment** — same parties, same cause of action → entire suit barred\n2. **Conclusiveness of judgment** — same parties, different cause of action → only issues *actually litigated* are barred\n\n*Rationale: "Interest reipublicae ut sit finis litium" — it is in the public interest that there be a limit to litigation.*',
+    hint: 'Final judgment + jurisdiction + merits + identity (parties, subject, cause).',
+    tags: ['civil-procedure', 'res-judicata', 'Rule-39', 'Sec-47'],
+  },
+  {
+    id: 'rem-008', subject: 'remedial-law', topic: 'special-civil-actions', difficulty: 'hard',
+    front: 'Distinguish CERTIORARI, PROHIBITION, and MANDAMUS.',
+    back: '| | CERTIORARI | PROHIBITION | MANDAMUS |\n|---|---|---|---|\n| Purpose | Annul/void illegal act | Stop illegal act | Compel performance |\n| Nature of act | Discretionary | Discretionary or ministerial | **Ministerial** duty |\n| When filed | After the act | Before/during act | When duty is unlawfully neglected |\n| Rule | Rule 65 | Rule 65 | Rule 65 |\n\n**Certiorari:** Officer acted WITHOUT/IN EXCESS of jurisdiction, or with **grave abuse of discretion** amounting to lack of jurisdiction.\n\n**Prohibition:** Prevents tribunal/officer from acting without jurisdiction.\n\n**Mandamus:** Compels performance of a **ministerial** (not discretionary) duty.\n\n*All filed under Rule 65. Distinguished from Rule 45 (petition for review on certiorari) which is an appeal on questions of law.*',
+    hint: 'Annul (cert) vs. Stop (prohibition) vs. Compel (mandamus).',
+    tags: ['special-civil-actions', 'certiorari', 'prohibition', 'mandamus', 'Rule-65'],
+  },
+]
