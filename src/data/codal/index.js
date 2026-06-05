@@ -2,6 +2,8 @@ import civilObligations    from './civilObligations.js'
 import civilContracts      from './civilContracts.js'
 import criminalBookI       from './criminalBookI.js'
 import politicalLaw        from './politicalLaw.js'
+import laborLawCode        from './laborLawCode.js'
+import remedialLawRules    from './remedialLawRules.js'
 
 // ─── Registry ────────────────────────────────────────────────────────────────
 
@@ -33,6 +35,30 @@ export const CODAL_REGISTRY = [
       { id: 'bill-of-rights',   label: 'Bill of Rights',      articles: politicalLaw.filter(a => a.topic === 'bill-of-rights') },
     ],
   },
+  {
+    id: 'labor-law',
+    name: 'Labor Law',
+    color: '#f97316',
+    topics: [
+      { id: 'security-of-tenure', label: 'Security of Tenure',    articles: laborLawCode.filter(a => a.topic === 'security-of-tenure') },
+      { id: 'just-causes',        label: 'Just Causes',           articles: laborLawCode.filter(a => a.topic === 'just-causes') },
+      { id: 'labor-relations',    label: 'Labor Relations',       articles: laborLawCode.filter(a => a.topic === 'labor-relations') },
+      { id: 'all-labor',          label: 'All Labor Provisions',  articles: laborLawCode },
+    ],
+  },
+  {
+    id: 'remedial-law',
+    name: 'Remedial Law',
+    color: '#10b981',
+    topics: [
+      { id: 'general-provisions',  label: 'General Provisions',   articles: remedialLawRules.filter(a => a.topic === 'general-provisions') },
+      { id: 'appeals',             label: 'Appeals',              articles: remedialLawRules.filter(a => a.topic === 'appeals') },
+      { id: 'special-civil-actions', label: 'Special Civil Actions', articles: remedialLawRules.filter(a => a.topic === 'special-civil-actions') },
+      { id: 'arrest',              label: 'Arrest',               articles: remedialLawRules.filter(a => a.topic === 'arrest') },
+      { id: 'evidence',            label: 'Evidence',             articles: remedialLawRules.filter(a => ['evidence','rights-of-accused','cause-of-action'].includes(a.topic)) },
+      { id: 'all-remedial',        label: 'All Rules of Court',   articles: remedialLawRules },
+    ],
+  },
 ]
 
 // ─── All articles flat list ───────────────────────────────────────────────────
@@ -42,6 +68,8 @@ export const ALL_ARTICLES = [
   ...civilContracts,
   ...criminalBookI,
   ...politicalLaw,
+  ...laborLawCode,
+  ...remedialLawRules,
 ]
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -89,12 +117,23 @@ export const SUBJECT_META = {
 }
 
 export const TOPIC_META = {
-  obligations:       { label: 'Obligations',             chapter: 'Book IV, Title I' },
-  contracts:         { label: 'Contracts',               chapter: 'Book IV, Title II' },
-  felonies:          { label: 'Felonies',                chapter: 'RPC Book I' },
-  stages:            { label: 'Stages of Execution',     chapter: 'RPC Book I' },
-  justifying:        { label: 'Justifying Circumstances',chapter: 'RPC Book I' },
-  exempting:         { label: 'Exempting Circumstances', chapter: 'RPC Book I' },
-  'state-principles':{ label: 'State Principles',        chapter: 'Const. Art. II' },
-  'bill-of-rights':  { label: 'Bill of Rights',          chapter: 'Const. Art. III' },
+  obligations:         { label: 'Obligations',               chapter: 'Book IV, Title I' },
+  contracts:           { label: 'Contracts',                 chapter: 'Book IV, Title II' },
+  felonies:            { label: 'Felonies',                  chapter: 'RPC Book I' },
+  stages:              { label: 'Stages of Execution',       chapter: 'RPC Book I' },
+  justifying:          { label: 'Justifying Circumstances',  chapter: 'RPC Book I' },
+  exempting:           { label: 'Exempting Circumstances',   chapter: 'RPC Book I' },
+  'state-principles':  { label: 'State Principles',          chapter: 'Const. Art. II' },
+  'bill-of-rights':    { label: 'Bill of Rights',            chapter: 'Const. Art. III' },
+  'security-of-tenure':{ label: 'Security of Tenure',        chapter: 'Labor Code, Arts. 294-299' },
+  'just-causes':       { label: 'Just Causes',               chapter: 'Labor Code, Art. 297' },
+  'bona-fide-suspension':{ label: 'Bona Fide Suspension',    chapter: 'Labor Code, Art. 301' },
+  'labor-relations':   { label: 'Labor Relations',           chapter: 'Labor Code, Art. 255' },
+  'general-provisions':{ label: 'General Provisions',        chapter: 'Rules of Court, Rule 1' },
+  'cause-of-action':   { label: 'Cause of Action',           chapter: 'Rules of Court, Rule 2' },
+  appeals:             { label: 'Appeals',                   chapter: 'Rules of Court, Rules 40-45' },
+  'special-civil-actions':{ label: 'Special Civil Actions',  chapter: 'Rules of Court, Rule 65' },
+  arrest:              { label: 'Arrest',                    chapter: 'Rules of Court, Rule 113' },
+  'rights-of-accused': { label: 'Rights of the Accused',     chapter: 'Rules of Court, Rule 115' },
+  evidence:            { label: 'Evidence',                  chapter: 'Rules of Court, Rule 130' },
 }

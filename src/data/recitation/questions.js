@@ -243,6 +243,120 @@ export const RECITATION_QUESTIONS = [
     ],
     modelAnswer: 'Applying STRICT CONSTRUCTION of penal statutes: In case of ambiguity, the doubt must be resolved IN FAVOR OF THE ACCUSED (in dubio pro reo). A ride-on lawn mower may or may not be a "vehicle" — the statute is ambiguous. Even if we apply ejusdem generis, the common understanding of "vehicle" for DUI purposes is road-going transport. The lawn mower on a private road likely falls outside the penal statute. Strict construction means the accused benefits from the ambiguity.',
   },
+
+  // ─── REMEDIAL LAW ────────────────────────────────────────────────────────────
+
+  {
+    id: 'rec-rem-001', subject: 'remedial-law', topic: 'Jurisdiction', difficulty: 'hard',
+    question: 'Counsel, A filed a case for specific performance in MTC. The contract value is ₱1.9M. The RTC dismissed the case for lack of jurisdiction after A refiled there. Who has jurisdiction?',
+    keywords: ['jurisdiction', 'MTC', 'RTC', 'RA 11576', 'specific performance', 'incapable of pecuniary estimation', 'amount', 'complaint'],
+    citations: ['RA 11576', 'russel v. vestil', 'rule 1 rules of court'],
+    followUps: [
+      { level: 1, question: 'You mentioned "incapable of pecuniary estimation." Define that doctrine — when is a case incapable of pecuniary estimation regardless of the amount involved?' },
+      { level: 2, question: 'If A had filed the case for collection of the ₱1.9M owed under the contract — same MTC/RTC question. How does the characterization of the action affect jurisdiction?' },
+      { level: 3, question: 'The contract calls for delivery of a specific parcel of land worth ₱10M as specific performance. Does the land value determine jurisdiction, or is this still "incapable of pecuniary estimation"?' },
+    ],
+    modelAnswer: 'Under RA 11576 (2021), RTC has exclusive jurisdiction over civil actions where the amount exceeds ₱2,000,000. However, actions for SPECIFIC PERFORMANCE are incapable of pecuniary estimation — the primary relief is performance of an obligation, not payment of money. Under Russel v. Vestil, cases incapable of pecuniary estimation are ALWAYS within RTC jurisdiction regardless of the monetary value of the underlying contract. A should have filed in RTC — MTC had no jurisdiction. The RTC dismissal was erroneous.',
+  },
+
+  {
+    id: 'rec-rem-002', subject: 'remedial-law', topic: 'Evidence', difficulty: 'hard',
+    question: 'Counsel, prosecution presents a video recording of A committing the crime. A\'s lawyer objects: "The video was taken without A\'s consent — it violates RA 4200 (Anti-Wiretapping Law)." Is the objection valid?',
+    keywords: ['RA 4200', 'wiretapping', 'video', 'private communication', 'consent', 'admissibility', 'exclusionary rule', 'anti-wiretapping'],
+    citations: ['RA 4200', 'people v. navarro', 'exclusionary rule', 'art. III sec. 3'],
+    followUps: [
+      { level: 1, question: 'RA 4200 covers "private communications or spoken words." If the video was taken in a PUBLIC place without audio — does RA 4200 still apply?' },
+      { level: 2, question: 'What if one of the participants in the conversation secretly recorded it — is the recording covered by RA 4200 or exempt under the "one-party consent" rule?' },
+      { level: 3, question: 'Even if the video violates RA 4200, are there circumstances where the court might still admit it? What doctrine might apply?' },
+    ],
+    modelAnswer: 'RA 4200 covers the recording of PRIVATE communications or spoken words without consent. If the video captures audio of private communications without consent — it likely violates RA 4200 and is inadmissible. If video-only (no audio of private conversations) in a public place — RA 4200 does NOT apply (no wiretapping; public acts are not private communications). Also, if a party to the conversation recorded it — one-party consent may apply in some jurisdictions (note: PH courts have been split on this).',
+  },
+
+  {
+    id: 'rec-rem-003', subject: 'remedial-law', topic: 'Criminal Procedure', difficulty: 'hard',
+    question: 'Counsel, A was acquitted in the RTC for homicide. The victim\'s family wants to appeal the acquittal to seek justice. Advise them on the remedies available and their limits.',
+    keywords: ['acquittal', 'double jeopardy', 'appeal', 'final', 'rule 65', 'grave abuse of discretion', 'private complainant', 'civil aspect', 'prohibition'],
+    citations: ['art. III sec. 21', 'rule 117 sec. 7', 'people v. sandiganbayan', 'rule 65'],
+    followUps: [
+      { level: 1, question: 'The family argues the judge ignored clear evidence — it was a gross miscarriage of justice. Does this allow appeal of the acquittal?' },
+      { level: 2, question: 'The prosecution (State) — not just the family — wants to appeal. Does the State have a better standing than the private complainant to challenge an acquittal?' },
+      { level: 3, question: 'Can the family still recover damages from A even after acquittal? What is the relationship between criminal liability and civil liability from the same act?' },
+    ],
+    modelAnswer: 'An acquittal is IMMEDIATELY FINAL — double jeopardy bars any retrial of the criminal case. The family (private complainant) CANNOT appeal the criminal acquittal. However, the limited remedy is: Rule 65 certiorari to the Supreme Court, only if the acquittal was rendered with GRAVE ABUSE OF DISCRETION amounting to lack of jurisdiction (not merely erroneous judgment). For civil damages: the acquittal in the criminal case does NOT prevent A civil action for damages — preponderance of evidence standard applies, which is lower than beyond reasonable doubt. The family may file a separate civil action for damages.',
+  },
+
+  // ─── COMMERCIAL LAW ──────────────────────────────────────────────────────────
+
+  {
+    id: 'rec-com-001', subject: 'commercial-law', topic: 'Corporation Law', difficulty: 'hard',
+    question: 'Counsel, a shareholder of XYZ Corp. wants to file a derivative suit against the directors for mismanagement that damaged the corporation. Walk me through the requirements.',
+    keywords: ['derivative suit', 'shareholder', 'exhaustion', 'demand', 'standing', 'rule 8', 'RA 11232', 'director', 'corporation'],
+    citations: ['rule 8 sec. 1 interim rules', 'RA 11232 sec. 23', 'filipinas port services v. go'],
+    followUps: [
+      { level: 1, question: 'You mentioned exhaustion of intra-corporate remedies. Must the shareholder always make a demand on the board before filing? Are there exceptions?' },
+      { level: 2, question: 'What is the "continuous ownership rule" in derivative suits? Is the shareholder required to own shares at the time of the wrong?' },
+      { level: 3, question: 'The suit succeeds and the court orders the directors to pay damages. To WHOM does the award go — to the corporation or to the shareholder who filed?' },
+    ],
+    modelAnswer: 'Derivative suit requirements: (1) Shareholder must be a stockholder at the time of the wrong; (2) Must have tried to exhaust intra-corporate remedies (demand on the board) — unless futile (directors are the wrongdoers); (3) Suit is brought on behalf of the CORPORATION — damages go to the corporation, not personally to the shareholder; (4) Must allege that the corporation is unable or unwilling to bring the action itself. The right to file derives from the corporation\'s own right to sue — the shareholder "stands in the shoes" of the corporation.',
+  },
+
+  // ─── TAXATION LAW ────────────────────────────────────────────────────────────
+
+  {
+    id: 'rec-tax-001', subject: 'taxation-law', topic: 'Tax Remedies', difficulty: 'hard',
+    question: 'Counsel, a taxpayer received a Preliminary Assessment Notice (PAN) from the BIR. She did nothing. Two months later, she received a Final Assessment Notice (FAN). She wants to contest. Is it too late?',
+    keywords: ['PAN', 'FAN', 'protest', '30 days', 'assessment', 'BIR', 'NIRC', 'administrative protest', 'reconsideration', 'reinvestigation'],
+    citations: ['sec. 228 NIRC', 'CIR v. Metro Star Superama', 'revenue regulations 12-99'],
+    followUps: [
+      { level: 1, question: 'The taxpayer files a "Request for Reconsideration" of the FAN. What is the distinction between reconsideration and reinvestigation? Which one is more favorable to the taxpayer?' },
+      { level: 2, question: 'The BIR did not act on the protest within 180 days. The taxpayer waited 1 year before appealing to the CTA. The CTA dismissed for late appeal. Was the dismissal correct?' },
+      { level: 3, question: 'Counsel, the assessment covers income NOT declared in the ITR. The BIR used the "net worth method" to determine undisclosed income. Is this a valid method? What is the presumption that attaches?' },
+    ],
+    modelAnswer: 'Not too late to contest the FAN. The failure to respond to the PAN does not waive the taxpayer\'s right to contest the FAN — though it may be an admission that the PAN issues are correct. The taxpayer has 30 DAYS from receipt of FAN to file a written protest (request for reconsideration or reinvestigation). Filing: Reconsideration = no new evidence; Reinvestigation = submitting additional documentary evidence. BIR has 180 days to decide. If BIR decides adversely or does nothing — 30 days to appeal to CTA Division.',
+  },
+
+  // ─── POLITICAL LAW ───────────────────────────────────────────────────────────
+
+  {
+    id: 'rec-pol-001', subject: 'political-law', topic: 'Separation of Powers', difficulty: 'hard',
+    question: 'Counsel, the President issued an Executive Order implementing a new tax. Congress challenges this as legislative in character and unconstitutional. The OSG defends it as a valid exercise of police power and delegated legislative authority. Analyze.',
+    keywords: ['separation of powers', 'executive order', 'legislative power', 'delegation', 'completeness test', 'sufficient standard', 'police power', 'non-delegation', 'due process'],
+    citations: ['art. VI sec. 1 constitution', 'pelaez v. auditor general', 'tatad v. secretary'],
+    followUps: [
+      { level: 1, question: 'You mentioned the completeness test and sufficient standard test. Define each. How do courts apply these to determine validity of delegation?' },
+      { level: 2, question: 'The OSG argues "necessary and proper powers of the President" under Art. VII, Sec. 17. Can the President exercise legislative power based on the residual powers clause?' },
+      { level: 3, question: 'If the Executive Order was issued under a valid delegation from Congress, is it law? How is it different from a statute? Can courts strike it down for violating a statute?' },
+    ],
+    modelAnswer: 'Taxation is a LEGISLATIVE power (Art. VI, Sec. 1). The President cannot impose new taxes by executive order without congressional delegation. However, if there is a valid enabling law with: (1) completeness (law determines the policy/boundaries) and (2) sufficient standard (law provides adequate guidance for the executive), the EO may be valid as delegated legislation. Key tests: the enabling law must be complete in itself and contain intelligible guidelines. Without valid delegation, the EO is unconstitutional — it violates the non-delegation doctrine and separation of powers.',
+  },
+
+  // ─── CIVIL LAW (Additional) ──────────────────────────────────────────────────
+
+  {
+    id: 'rec-civ-005', subject: 'civil-law', topic: 'Succession', difficulty: 'hard',
+    question: 'Counsel, T died and left a will giving his entire estate to his friend F. T is survived by his legitimate child A and surviving spouse B. Is the will valid? What rights do A and B have?',
+    keywords: ['compulsory heirs', 'legitime', 'testamentary freedom', 'preterition', 'free portion', 'testator', 'reduction', 'art. 888', 'art. 854'],
+    citations: ['art. 888 civil code', 'art. 854 civil code', 'art. 897 civil code'],
+    followUps: [
+      { level: 1, question: 'You mentioned preterition. Distinguish preterition from disinheritance. What are the effects of each on the will?' },
+      { level: 2, question: 'T\'s estate is ₱10M. What is the EXACT legitime of A (legitimate child) and B (surviving spouse) respectively?' },
+      { level: 3, question: 'What if T had left NOTHING in the will for A — not even mentioned A\'s name? Does this completely invalidate the will, or only the portion affecting the legitime?' },
+    ],
+    modelAnswer: 'The will is VOID insofar as it impairs the legitime of compulsory heirs. A (legitimate child) and B (surviving spouse) are compulsory heirs whose legitimes cannot be impaired by testamentary disposition. If T completely excluded A from the will without mentioning A at all — this is PRETERITION (Art. 854), which annuls the institution of heirs (F\'s inheritance is void) and the estate passes as if T died intestate. If A is mentioned but given less than the legitime — the will is valid but A can demand completion of the legitime. B gets the conjugal/community property share plus legitime from the estate.',
+  },
+
+  {
+    id: 'rec-civ-006', subject: 'civil-law', topic: 'Property', difficulty: 'medium',
+    question: 'Counsel, A and B are co-owners of a parcel of land. A wants to sell his share to C. B objects, saying he has the right to buy it first. Explain the concept of the right of legal redemption among co-owners.',
+    keywords: ['co-ownership', 'legal redemption', 'art. 1620', 'right of pre-emption', '30 days', 'written notice', 'co-owner', 'third person', 'same price'],
+    citations: ['art. 1620 civil code', 'art. 1623 civil code', 'verdad v. court of appeals'],
+    followUps: [
+      { level: 1, question: 'How long does B have to exercise his right of redemption once he receives written notice of A\'s sale to C? What triggers the period?' },
+      { level: 2, question: 'A sold his share to C without notifying B. C registered the sale. Six months later, B learned about it and filed redemption. Can B still redeem? What period applies?' },
+      { level: 3, question: 'There are 4 co-owners. Two of them want to exercise redemption but the other two don\'t. Can the two redeem only their proportionate shares? Or must they redeem the whole sold share?' },
+    ],
+    modelAnswer: 'Under Art. 1620: A co-owner of a thing may exercise the right of redemption when the share of all the other co-owners or any of them, is sold to a third person. The right must be exercised within 30 DAYS from written notification by the seller. Period runs from WRITTEN notice (not mere knowledge). B must pay the SAME price C paid. The purpose is to prevent strangers from becoming co-owners against the wishes of existing co-owners. If A sold without written notice to B — B\'s 30-day period has not started running.',
+  },
 ]
 
 // Grouped by subject for quick access

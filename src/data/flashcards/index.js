@@ -3,6 +3,10 @@ import criminalLawCards from './criminalLawCards.js'
 import politicalLawCards from './politicalLawCards.js'
 import remedialLawCards from './remedialLawCards.js'
 import { commercialLawCards, taxationLawCards, laborLawCards, legalEthicsCards } from './otherSubjectCards.js'
+import {
+  criminalExpansion, politicalExpansion, remedialExpansion,
+  commercialExpansion, taxationExpansion, laborExpansion, ethicsExpansion,
+} from './expansionCards.js'
 
 // ─── Flat registry with SRS defaults ────────────────────────────────────────
 
@@ -20,13 +24,13 @@ const INITIAL_SRS = {
 
 export const ALL_FLASHCARDS = [
   ...civilLawCards,
-  ...criminalLawCards,
-  ...politicalLawCards,
-  ...remedialLawCards,
-  ...commercialLawCards,
-  ...taxationLawCards,
-  ...laborLawCards,
-  ...legalEthicsCards,
+  ...criminalLawCards, ...criminalExpansion,
+  ...politicalLawCards, ...politicalExpansion,
+  ...remedialLawCards, ...remedialExpansion,
+  ...commercialLawCards, ...commercialExpansion,
+  ...taxationLawCards, ...taxationExpansion,
+  ...laborLawCards, ...laborExpansion,
+  ...legalEthicsCards, ...ethicsExpansion,
 ].map(card => ({ ...INITIAL_SRS, ...card }))
 
 export const TOTAL_CARDS = ALL_FLASHCARDS.length

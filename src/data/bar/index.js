@@ -7,24 +7,34 @@ import taxationBar  from './taxationLawBar.js'
 import laborBar     from './laborLawBar.js'
 import ethicsBar    from './legalEthicsBar.js'
 import writingBar   from './legalWritingBar.js'
+import {
+  criminalExpMCQ, criminalExpEssays,
+  politicalExpMCQ,
+  remedialExpMCQ,
+  commercialExpMCQ,
+  taxationExpMCQ,
+  laborExpMCQ,
+  ethicsExpMCQ,
+  multiSubjectEssays,
+} from './moreBarQuestions.js'
 
 // ─── Registry ────────────────────────────────────────────────────────────────
 
 export const ALL_MCQ = [
   ...civilBar.mcq,
-  ...criminalBar.mcq,
-  ...politicalBar.mcq,
-  ...remedialBar.mcq,
-  ...commercialBar.mcq,
-  ...taxationBar.mcq,
-  ...laborBar.mcq,
-  ...ethicsBar.mcq,
+  ...criminalBar.mcq, ...criminalExpMCQ,
+  ...politicalBar.mcq, ...politicalExpMCQ,
+  ...remedialBar.mcq, ...remedialExpMCQ,
+  ...commercialBar.mcq, ...commercialExpMCQ,
+  ...taxationBar.mcq, ...taxationExpMCQ,
+  ...laborBar.mcq, ...laborExpMCQ,
+  ...ethicsBar.mcq, ...ethicsExpMCQ,
   ...writingBar.mcq,
 ]
 
 export const ALL_ESSAYS = [
   ...civilBar.essays,
-  ...criminalBar.essays,
+  ...criminalBar.essays, ...criminalExpEssays,
   ...politicalBar.essays,
   ...remedialBar.essays,
   ...commercialBar.essays,
@@ -32,6 +42,7 @@ export const ALL_ESSAYS = [
   ...laborBar.essays,
   ...ethicsBar.essays,
   ...writingBar.essays,
+  ...multiSubjectEssays,
 ]
 
 export const ALL_QUESTIONS = [...ALL_MCQ, ...ALL_ESSAYS]
